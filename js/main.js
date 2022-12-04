@@ -5,18 +5,48 @@ import Score from "./score.js";
 import Snake from "./snake.js";
 import Config from "./config.js";
 
+const start = document.querySelector(".start");
+const buttons = start.querySelectorAll(".btn");
+const checkbox = start.querySelector("#checkbox");
+
+for (let index = 0; index < buttons.length; index++) {
+  const button = buttons[index];
+  button.addEventListener("click", clickHandler);
+}
+let complexity = true;
+checkbox.addEventListener("click", () => {
+  if (checkbox.checked) {
+    complexity = false;
+  } else {
+    complexity = true;
+  }
+});
+
+function clickHandler(e) {
+  if (e.target.dataset.n === "300") {
+    startGame(300);
+  } else if (e.target.dataset.n === "600") {
+    startGame(600);
+  }
+
+  function startGame(n) {
+    start.remove();
+    new Game(document.querySelector(".canvas_wrapper"), n, n, complexity);
+  }
+}
 
 export default class Game {
-  constructor(container, a) {
-    this.canvas = new Canvas(container, a);
+  constructor(container, userWidth, userHeight, complexity) {
+    this.canvas = new Canvas(container, userWidth, userHeight);
     this.berry = new Berry(this.canvas);
     this.score = new Score(".score", ".recordScore", 0);
     this.snake = new Snake();
     this.config = new Config();
+    this.complexity = complexity;
     new GameLoop(this.update.bind(this), this.draw.bind(this));
   }
   update() {
-    this.snake.update(this.berry, this.score, this.canvas, this.config);
+    this.snake.update(this.berry, this.score, this.canvas, this.complexity);
   }
   draw() {
     this.canvas.context.clearRect(
@@ -27,23 +57,5 @@ export default class Game {
     );
     this.berry.draw(this.canvas.context);
     this.snake.draw(this.canvas.context);
-  }
-}
-
-const start = document.querySelector(".start");
-const buttons = start.querySelectorAll(".btn");
-const a = document.querySelector("#startInc");
-
-for (let index = 0; index < buttons.length; index++) {
-  const button = buttons[index];
-  button.addEventListener("click", clickHandler);
-}
-function clickHandler(e) {
-  if (e.target.dataset.n === "300") {
-    start.remove();
-    new Game(document.querySelector(".canvas_wrapper"), 300);
-  } else if (e.target.dataset.n === "input") {
-    start.remove();
-    new Game(document.querySelector(".canvas_wrapper"), a.value);
   }
 }

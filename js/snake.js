@@ -11,24 +11,32 @@ export default class Snake {
 
     this.control();
   }
-  update(berry, score, canvas) {
+  update(berry, score, canvas, level) {
     this.x += this.dx;
     this.y += this.dy;
     this.tails.unshift({ x: this.x, y: this.y });
+    if (level === true) {
+      if (this.x < 0) {
+        this.x = canvas.element.width - this.config.sizeCell;
+      } else if (this.x >= canvas.element.width) {
+        this.x = 0;
+      }
 
+      if (this.y < 0) {
+        this.y = canvas.element.height - this.config.sizeCell;
+      } else if (this.y >= canvas.element.height) {
+        this.y = 0;
+      }
+    } else if (
+      this.x < 0 ||
+      this.y < 0 ||
+      this.x >= canvas.element.width ||
+      this.y >= canvas.element.height
+    ) {
+      this.death();
+    }
     if (this.tails.length > this.maxTails) {
       this.tails.pop();
-    }
-    if (this.x < 0) {
-      this.x = canvas.element.width - this.config.sizeCell;
-    } else if (this.x >= canvas.element.width) {
-      this.x = 0;
-    }
-
-    if (this.y < 0) {
-      this.y = canvas.element.height - this.config.sizeCell;
-    } else if (this.y >= canvas.element.height) {
-      this.y = 0;
     }
 
     this.tails.forEach((el, index) => {
