@@ -4,6 +4,7 @@ export default class Canvas {
     this.context = this.element.getContext("2d");
     this.element.width = a;
     this.element.height = b;
+
     container.appendChild(this.element);
   }
 }

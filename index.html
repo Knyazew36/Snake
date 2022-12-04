@@ -6,24 +6,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Моя змейка</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <main class="main">
+
         <div class="start">
-
+            <h1>Выберите размер игрового поля</h1>
             <button class="btn" data-n="300">300</button>
-            <button class="btn" data-n="600">600</button>
-            <input type="checkbox" name="sss" id="checkbox">
-
+            <button class="btn" data-n="400">400</button>
+            <button class="btn" data-n="500">500</button>
+            <p class="text">Включить максимальный уровень сложности?</p>
+            <section class="pen check">
+                <span class="container">
+                    <input type="checkbox" style="opacity:0" class="ubuntu-touch" id="checkbox">
+                    <label for="ubuntu-touch" class="state"></label>
+                    <label for="ubuntu-touch" class="switch"></label>
+                </span>
+            </section>
         </div>
-        <div class="score"></div>
-        <div class="recordScore"></div>
-        <div class="canvas_wrapper"></div>
+        <div class="game">
+            <div class="scoreBlock">
+                <h2>Очки:</h2>
+                <div class="score"></div>
+            </div>
+            <div class="scoreRecordBlock">
+                <h2>Лучший результат:</h2>
+                <div class="recordScore"></div>
+            </div>
+            <div class="canvas_wrapper"></div>
+        </div>
     </main>
 
 
-    <script src="js/main.js" type="module"></script>
+    <script src="js/startPage.js" type="module"></script>
 
 </body>
 

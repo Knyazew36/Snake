@@ -26,6 +26,7 @@ export default class Berry {
     this.x =
       getRandom(0, this.canvas.element.width / this.config.sizeCell) *
       this.config.sizeCell;
+
     this.y =
       getRandom(0, this.canvas.element.height / this.config.sizeCell) *
       this.config.sizeCell;
