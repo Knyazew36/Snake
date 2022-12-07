@@ -78,16 +78,17 @@ export default class Snake {
 
   control() {
     document.addEventListener("keydown", (e) => {
-      if (e.code === "KeyW") {
+      e.preventDefault();
+      if (e.code === "ArrowUp") {
         this.dx = 0;
         this.dy = -this.config.sizeCell;
-      } else if (e.code === "KeyS") {
+      } else if (e.code === "ArrowDown") {
         this.dx = 0;
         this.dy = this.config.sizeCell;
-      } else if (e.code === "KeyA") {
+      } else if (e.code === "ArrowLeft") {
         this.dx = -this.config.sizeCell;
         this.dy = 0;
-      } else if (e.code === "KeyD") {
+      } else if (e.code === "ArrowRight") {
         this.dx = this.config.sizeCell;
         this.dy = 0;
       }

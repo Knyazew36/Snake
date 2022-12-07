@@ -1,5 +1,5 @@
 export default class Score {
-  constructor(scoreBlock, recordBlock, score = 0) {
+  constructor(scoreBlock, recordBlock = 0, score = 0) {
     this.scoreBlock = document.querySelector(scoreBlock);
     this.recordBlock = document.querySelector(recordBlock);
 
@@ -15,9 +15,8 @@ export default class Score {
     }
   }
   incScore() {
-    this.score++;    
+    this.score++;
     this.draw();
-    
   }
   setToZero() {
     this.score = 0;
